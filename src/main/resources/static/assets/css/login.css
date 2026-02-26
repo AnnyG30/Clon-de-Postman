@@ -1,0 +1,35 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+     width: 100%;
+}
+
+button {
+    padding: 10px;
+    margin: 10px;
+    justify-content: right;
+}
+
+h1 {
+
+    justify-content: center;
+    margin: 10px;
+
+}
+.formulario {
+     display: flex;
+     justify-content: center;
+     padding: 10px;
+     margin: 100px;
+}
+
+input {
+    padding: 8px;
+    width: 100%;
+}
+
+.formulario button {
+    margin: 50px;
+    padding:10px;
+}

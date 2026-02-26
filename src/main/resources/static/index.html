@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Mini Postman</title>
+    <link rel="stylesheet" href="assets/css/index.css" />
+</head>
+<body>
+<div class="app">
+    <!-- Top bar (simple) -->
+    <header class="topbar">
+        <div class="brand">Postman</div>
+        <div class="search">
+            <input id="search" type="text" placeholder="Search" aria-label="Search" />
+        </div>
+        <div class="top-actions">
+            <button class="btn ghost" type="button">Login</button>
+        </div>
+    </header>
+
+    <main class="content">
+        <!-- Request card -->
+        <section class="card request">
+            <div class="request-row">
+                <div class="method-url">
+                    <select id="methodSelect" class="select" aria-label="HTTP Method">
+                        <option>GET</option>
+                        <option>POST</option>
+                        <option>PUT</option>
+                        <option>PATCH</option>
+                        <option>DELETE</option>
+                    </select>
+
+                    <input
+                            id="urlInput"
+                            class="url"
+                            type="text"
+                            placeholder="Enter URL or paste text"
+                            value="http://localhost:8080/"
+                            aria-label="Request URL"
+                    />
+                </div>
+
+                <div class="request-actions">
+                    <button id="sendBtn" class="btn send" type="button">Send</button>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab active" data-tab="params" type="button">Params</button>
+                <button class="tab" data-tab="auth" type="button">Authentication</button>
+                <button class="tab" data-tab="formdata" type="button">Body - FormData</button>
+                <button class="tab" data-tab="json" type="button">Body - JSON</button>
+                <button class="tab" data-tab="headers" type="button">Headers</button>
+            </div>
+
+            <!-- Panels -->
+            <div class="panel active" id="panel-params">
+                <div class="panel-title">Query Params</div>
+
+                <div class="kv-table">
+                    <div class="kv-head">
+                        <div>Key</div>
+                        <div>Value</div>
+                        <div>Description</div>
+                        <div class="right">Bulk Edit</div>
+                    </div>
+
+                    <div id="paramsRows" class="kv-body"></div>
+
+                    <div class="kv-foot">
+                        <button class="btn ghost small" id="addParamBtn" type="button">+ Add param</button>
+                        <button class="btn ghost small" id="clearParamsBtn" type="button">Clear</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel" id="panel-auth">
+                <div class="panel-title">Authentication</div>
+
+                <div class="auth-grid">
+                    <label class="field">
+                        <span>Username</span>
+                        <input id="appUsername" class="input" type="text" autocomplete="username" />
+                    </label>
+
+                    <label class="field">
+                        <span>Password</span>
+                        <input id="appPassword" class="input" type="password" autocomplete="current-password" />
+                    </label>
+
+                    <label class="field">
+                        <span>API KEY</span>
+                        <input id="apiKey" class="input" type="text" placeholder="e.g. Bearer xxx or API key" />
+                    </label>
+                </div>
+            </div>
+
+            <div class="panel" id="panel-formdata">
+                <div class="panel-title">Body (form-data)</div>
+
+                <div class="kv-table">
+                    <div class="kv-head">
+                        <div>Key</div>
+                        <div>Value</div>
+                        <div>Description</div>
+                        <div class="right">Bulk Edit</div>
+                    </div>
+
+                    <div id="formDataRows" class="kv-body"></div>
+
+                    <div class="kv-foot">
+                        <button class="btn ghost small" id="addFormDataBtn" type="button">+ Add field</button>
+                        <button class="btn ghost small" id="clearFormDataBtn" type="button">Clear</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel" id="panel-json">
+                <div class="panel-title">Body (raw JSON)</div>
+
+                <label class="field" style="display:block;">
+                    <span>JSON</span>
+                    <textarea
+                            id="jsonBody"
+                            class="textarea"
+                            rows="10"
+                            placeholder='{"hello":"world"}'
+                            aria-label="JSON Body"
+                    ></textarea>
+                </label>
+            </div>
+
+            <div class="panel" id="panel-headers">
+                <div class="panel-title">Headers</div>
+
+                <div class="kv-table">
+                    <div class="kv-head">
+                        <div>Key</div>
+                        <div>Value</div>
+                        <div>Description</div>
+                        <div class="right">Bulk Edit</div>
+                    </div>
+
+                    <div id="headersRows" class="kv-body"></div>
+
+                    <div class="kv-foot">
+                        <button class="btn ghost small" id="addHeaderBtn" type="button">+ Add header</button>
+                        <button class="btn ghost small" id="clearHeadersBtn" type="button">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Response card -->
+        <section class="card response">
+            <div class="response-head">
+                <div class="response-title">Response</div>
+                <div class="response-meta">
+                    <span id="statusPill" class="pill muted">—</span>
+                    <span id="timePill" class="pill muted">— ms</span>
+                    <span id="sizePill" class="pill muted">— bytes</span>
+                </div>
+            </div>
+
+            <div class="response-body">
+                <pre id="responsePre" class="pre muted">Enter the URL and click Send to get a response</pre>
+                <div id="errorMsg" class="error muted"></div>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="assets/index/index.js"></script>
+</body>
+</html>
